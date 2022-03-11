@@ -8,7 +8,7 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-router.post('/signup', (req, res, next) => {
+router.post('/', (req, res, next) => {
 
     User.find({ email: req.body.email })
         .exec()
@@ -72,7 +72,7 @@ router.post('/login', (req, res, next) => {
                         },
                             'secrete',
                             {
-                                expiresIn: "1h"
+                                expiresIn: "1d"
                             },
 
                         );

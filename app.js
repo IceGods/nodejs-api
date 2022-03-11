@@ -16,10 +16,13 @@ app.use(bodyParser.json());
 app.use('/uploads', express.static('uploads'));
 
 //Mongo
-mongoose.connect('mongodb+srv://admin:' + 'rehan_123' + '@node-ecom-cluster.jmrtf.mongodb.net/node-ecom-cluster?retryWrites=true&w=majority',
+mongoose.connect('mongodb://admin:pas5word@117.53.46.150:17017/debug_db',
     {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
+        useNewUrlParser: true, 
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false
+        
     })
 
 //CORS 
@@ -36,7 +39,7 @@ app.use((req, res, next) => {
 //Routs
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
-app.use('/user', userRoutes);
+app.use('/register', userRoutes);
 
 
 app.use((req, res, next) => {

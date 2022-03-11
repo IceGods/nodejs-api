@@ -3,15 +3,18 @@ const mongoose = require('mongoose');
 
 exports.get_all = (req, res, next) => {
     Product.find()
-        .select('name price _id productImage')
+        .select('nama kode jenis jumlah harga _id productImage')
         .exec()
         .then((docs) => {
             const response = {
                 count: docs.length,
                 products: docs.map((doc) => {
                     return {
-                        name: doc.name,
-                        price: doc.price,
+                        nama: doc.nama,
+                        kode: doc.kode,
+                        jenis: doc.jenis,
+                        jumlah: doc.jumlah,
+                        harga: doc.harga,
                         productImage: doc.productImage,
                         request: {
                             type: 'GET',
@@ -31,8 +34,11 @@ exports.get_all = (req, res, next) => {
 exports.add_product = (req, res, next) => {
     const product = new Product({
         _id: new mongoose.Types.ObjectId(),
-        name: req.body.name,
-        price: req.body.price,
+        nama: req.body.nama,
+        kode: req.body.kode,
+        jenis: req.body.jenis,
+        jumlah: req.body.jumlah,
+        harga: req.body.harga,
         productImage: req.file.path
     });
     product.save()
@@ -56,7 +62,7 @@ exports.add_product = (req, res, next) => {
 exports.get_by_id = (req, res, next) => {
     const id = req.params.productId;
     Product.findById(id)
-        .select('name price _id productImage')
+        .select('nama kode jenis jumlah harga _id productImage')
         .exec()
         .then(doc => {
             console.log(doc);
@@ -76,16 +82,20 @@ exports.get_by_id = (req, res, next) => {
 exports.update = (req, res, next) => {
     const id = req.params.productId;
     const updateOps = {
-        name : req.name,
-        price : req.price,
-        productImage: req.file.path
+        nama : req.nama,
+        kode: req.kode,
+        jenis: req.jenis,
+        jumlah: req.jumlah,
+        harga : req.harga,
     }
  
-    Product.update({ _id: id }, { $set: updateOps })
+    Product.updateOne({ _id: id }, { $set: updateOps })
         .exec()
         .then((result) => {
             console.log(result);
-            res.status(200).json(result);
+            res.status(200).json({
+                message:'Successfully Update'
+            });
         })
         .catch((err) => {
             console.log(err);
