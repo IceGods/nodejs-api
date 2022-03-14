@@ -18,7 +18,7 @@ exports.get_all = (req, res, next) => {
                         productImage: doc.productImage,
                         request: {
                             type: 'GET',
-                            url: 'http://localhost:3000/products/' + doc.id
+                            url: 'http://localhost:5000/products/' + doc.id
                         }
                     }
                 })
@@ -47,7 +47,7 @@ exports.add_product = (req, res, next) => {
                 message: 'Product created successfully',
                 createdProduct: {
                     type: 'GET',
-                    url: 'http://localhost:3000/products/' + result.id
+                    url: 'https://radia-api.herokuapp.com/products' + result.id
                 }
             });
         })
