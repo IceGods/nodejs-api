@@ -47,7 +47,7 @@ exports.add_product = (req, res, next) => {
                 message: 'Product created successfully',
                 createdProduct: {
                     type: 'GET',
-                    url: 'https://radia-api.herokuapp.com/products' + result.id
+                    url: 'https://radia-api.herokuapp.com/products/' + result.id
                 }
             });
         })
