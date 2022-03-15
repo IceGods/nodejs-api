@@ -36,7 +36,7 @@ const upload = multer({
 });
 
 
-
+router.get('/:profileId', ProfileController.get_by_id)
 
 router.post('/profile', upload.single('foto'), ProfileController.add_profile);
 
