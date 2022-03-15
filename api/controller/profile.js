@@ -20,7 +20,11 @@ exports.add_profile = (req, res, next) => {
         .then((result) => {
             res.status(201).json({
                 message: 'Profile created successfully',
-            });
+                createdProduct: {
+                type: 'GET',
+                url: 'https://radia-api.herokuapp.com/profile/' + result.id
+            }
+        });
         })
         .catch((err) => {
             console.log(err);
