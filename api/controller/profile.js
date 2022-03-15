@@ -35,8 +35,8 @@ exports.add_profile = (req, res, next) => {
 }
 
 exports.get_by_id = (req, res, next) => {
-    const id = req.params.productId;
-    Product.findById(id)
+    const id = req.params.profleId;
+    Profile.findById(id)
         .select('nama_depam nama_belakang tentang_toko email nomor_hp negara bahasa mata_uang npwp _id foto')
         .exec()
         .then(doc => {
@@ -79,6 +79,17 @@ exports.update = (req, res, next) => {
         })
         .catch((err) => {
             console.log(err);
+            res.status(500).json(err);
+        });
+}
+exports.delete = (req, res, next) => {
+    const id = req.params.profileId;
+    Profile.deleteOne({ _id: id })
+        .exec()
+        .then((result) => {
+            res.status(200).json(result);
+        })
+        .catch((err) => {
             res.status(500).json(err);
         });
 }

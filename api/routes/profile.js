@@ -3,7 +3,6 @@ const express = require('express');
 const router = express.Router(); 
 
 const multer = require('multer');
-const checkAuth = require('../middleware/check-auth');
  
 const ProfileController = require('../controller/profile');
 
@@ -42,7 +41,7 @@ router.post('/profile', upload.single('foto'), ProfileController.add_profile);
 
 router.patch('/:profileId', upload.single('foto'),   ProfileController.update);
 
-
+router.delete('/:profileId', ProfileController.delete);
 
 
 module.exports = router;
