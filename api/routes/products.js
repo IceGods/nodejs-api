@@ -39,7 +39,7 @@ const upload = multer({
 
 router.get('/', ProductController.get_all);
 
-router.post('/', upload.single('productImage'), ProductController.add_product);
+router.post('/add', upload.single('productImage'), ProductController.add_product);
 
 router.get('/:productId', ProductController.get_by_id);
 
