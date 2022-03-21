@@ -3,9 +3,8 @@ const express = require('express');
 const router = express.Router(); 
 
 const multer = require('multer');
-const checkAuth = require('../middleware/check-auth');
  
-const ProductController = require('../controller/products');
+const ProfileController = require('../controller/profile');
 
 const storageConf = multer.diskStorage({
     destination: function (req, res, cb) {
@@ -36,19 +35,13 @@ const upload = multer({
 });
 
 
+router.get('/:profileId', ProfileController.get_by_id)
 
-router.get('/', ProductController.get_all);
+router.post('/profile', upload.single('foto'), ProfileController.add_profile);
 
-router.post('/add', upload.single('productImage'), ProductController.add_product);
+router.patch('/:profileId', upload.single('foto'),   ProfileController.update);
 
-router.get('/:productId', ProductController.get_by_id);
-
-
-
-router.patch('/:productId', upload.single('productImage'),   ProductController.update);
-
-router.delete('/:productId', ProductController.delete);
-
+router.delete('/:profileId', ProfileController.delete);
 
 
 module.exports = router;
