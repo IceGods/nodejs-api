@@ -18,7 +18,7 @@ exports.get_all = (req, res, next) => {
                         quantity: doc.quantity,
                         request: {
                             type: 'GET',
-                            url: 'http://localhost:3000/orders/' + doc._id
+                            url: 'https://radia-api.herokuapp.com/orders/' + doc._id
                         }
                     }
                 })
@@ -59,7 +59,7 @@ exports.create_new = (req, res, next) => {
                 },
                 request: {
                     type: "GET",
-                    url: "http://localhost:3000/orders/" + result._id
+                    url: "https://radia-api.herokuapp.com/orders/" + result._id
                 }
             });
         })
@@ -85,7 +85,7 @@ exports.order_by_id = (req, res, next) => {
                     order: order,
                     request: {
                         type: 'GET',
-                        url: 'http://localhost:3000/orders/'
+                        url: 'https://radia-api.herokuapp.com/orders/'
                     }
                 });
             }
@@ -106,7 +106,7 @@ exports.delete = (req, res, next) => {
                     message: 'Order Deleted',
                     request: {
                         type: 'GET',
-                        url: 'http://localhost:3000/orders/',
+                        url: 'https://radia-api.herokuapp.com/orders/',
                         body: { productId: "ID", quantity: "Number" }
                     }
                 }

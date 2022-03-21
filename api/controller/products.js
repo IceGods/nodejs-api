@@ -18,7 +18,7 @@ exports.get_all = (req, res, next) => {
                         productImage: doc.productImage,
                         request: {
                             type: 'GET',
-                            url: 'http://localhost:5000/products/' + doc.id
+                            url: 'http://radia-api.herokuapp.com/products/' + doc.id
                         }
                     }
                 })
