@@ -1,4 +1,3 @@
-
 const express = require('express');
 const router = express.Router(); 
 
@@ -41,12 +40,10 @@ router.get('/', ProductController.get_all);
 
 router.post('/add' ,upload.single('productImage'), ProductController.add_product);
 
-router.get('/:productId' , ProductController.get_by_id);
+router.get('/:productId', ProductController.get_by_id);
 
-router.patch('/:productId' ,upload.single('productImage'),   ProductController.update);
+router.patch('/:productId', upload.single('productImage'),   ProductController.update);
 
-router.delete('/:productId' ,ProductController.delete);
-
-
+router.delete('/:productId', ProductController.delete);
 
 module.exports = router;
